@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from pages import index, predictions, insights, process, pagename
 
 # Imports from this application
 from app import app, server
@@ -12,8 +13,8 @@ from pages import index, predictions, insights, process
 """
 https://dash-bootstrap-components.opensource.faculty.ai/l/components/navbar
 
-NavbarSimple consists of a 'brand' on the left, to which you can attach a link 
-with brand_href, and a number nav items as its children. NavbarSimple will 
+NavbarSimple consists of a 'brand' on the left, to which you can attach a link
+with brand_href, and a number nav items as its children. NavbarSimple will
 collapse on smaller screens, and add a toggle for revealing navigation items.
 
 brand (string, optional): Brand text, to go top left of the navbar.
@@ -26,16 +27,17 @@ sticky (string, optional): Stick the navbar to the top or the bottom of the view
 """
 
 navbar = dbc.NavbarSimple(
-    brand='YOUR APP NAME',
-    brand_href='/', 
+    brand='StarTrek Ratings Predictor',
+    brand_href='/',
     children=[
-        dbc.NavItem(dcc.Link('Predictions', href='/predictions', className='nav-link')), 
-        dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')), 
-        dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')), 
+        dbc.NavItem(dcc.Link('Predictions', href='/predictions', className='nav-link')),
+        dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')),
+        dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')),
+        dbc.NavItem(dcc.Link('pagename', href='/pagename', className='nav-link')),
     ],
     sticky='top',
-    color='light', 
-    light=True, 
+    color='light',
+    light=True,
     dark=False
 )
 
@@ -44,27 +46,27 @@ footer = dbc.Container(
         dbc.Col(
             html.P(
                 [
-                    html.Span('Your Name', className='mr-2'), 
-                    html.A(html.I(className='fas fa-envelope-square mr-1'), href='mailto:<you>@<provider>.com'), 
-                    html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/<you>/<repo>'), 
-                    html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/<you>/'), 
-                    html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'), 
-                ], 
+                    html.Span('Eric Smith', className='mr-2'),
+                    html.A(html.I(className='fas fa-envelope-square mr-1'), href='mailto:<you>@<provider>.com'),
+                    html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/<you>/<repo>'),
+                    html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/<you>/'),
+                    html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'),
+                ],
                 className='lead'
             )
         )
     )
 )
 
-# For more explanation, see: 
+# For more explanation, see:
 # Plotly Dash User Guide, URL Routing and Multiple Apps
 # https://dash.plot.ly/urls
 
 app.layout = html.Div([
-    dcc.Location(id='url', refresh=False), 
-    navbar, 
-    dbc.Container(id='page-content', className='mt-4'), 
-    html.Hr(), 
+    dcc.Location(id='url', refresh=False),
+    navbar,
+    dbc.Container(id='page-content', className='mt-4'),
+    html.Hr(),
     footer
 ])
 
@@ -79,6 +81,8 @@ def display_page(pathname):
         return insights.layout
     elif pathname == '/process':
         return process.layout
+    elif pathname == '/pagename':
+        return pagename.layout
     else:
         return dcc.Markdown('## Page not found')
 
