@@ -64,7 +64,7 @@ import pandas as pd
 
 @app.callback(
     Output('prediction-content', 'children'),
-    [Input('Line_Count', 'value'), Input('Character', 'value')],
+    [Input('Character', 'value'), Input('Line_Count', 'value')],
 )
 def predict(Character, Line_Count):
     df = pd.DataFrame(
@@ -72,6 +72,6 @@ def predict(Character, Line_Count):
         data=[[Character, Line_Count]]
     )
     y_pred = pipeline.predict(df)
-    return f'Projected Rating: {y_pred:.01f} '
+    return f'Projected Rating: {y_pred[0]:.01f} '
 
 layout = dbc.Row([column1, column2])

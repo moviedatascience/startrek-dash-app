@@ -48,12 +48,13 @@ column1 = dbc.Col(
 # fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
 #            hover_name="country", log_x=True, size_max=60)
 
-# column2 = html.Div([
-#     html.iframe([
-#         src="https://www.youtube.com/embed/tgbNymZ7vqY"
-#         style={'width': '100%', 'display': 'inline-block'}
-#     ])
-#     ]
-# )
+column2 = dbc.Col([
+    html.Iframe(
+        src="https://www.youtube.com/embed/RLz025d_vJ0",
+        style={'width': '100%', 'height': '100%', 'display': 'inline-block'}
+    )
+    ]
 
-layout = dbc.Row([column1])
+)
+
+layout = dbc.Row([column1, column2])

@@ -65,7 +65,7 @@ import pandas as pd
     Output('prediction-content', 'children'),
     [Input('Line_Count', 'value'), Input('Character', 'value')],
 )
-def predict(Character, Line_Count):
+def predict(Line_Count, Character):
     df = pd.DataFrame(
         columns=['Character', 'Line_Count'],
         data=[['Character', Line_Count]]

@@ -27,9 +27,22 @@ layout = html.Div([
             value=df['Seasons'].min(),
             marks={str(season): str(season) for season in df['Seasons'].unique()},
         ),
+        #text that I want
+
+        dcc.Graph(id='new'),
+        dcc.Input(id='dummy', value='dummy')
     ],
     style={'width': '100%', 'display': 'inline-block'})
 ])
+
+@app.callback(
+    Output('new', 'figure'),
+    [Input('dummy', 'value')]
+)
+
+def explore_new(dummy):
+    traces = go.Scatter(x=df['Line_Count'], y=df['Rating'], trendline='ols', color='Character'),
+    return {'data': traces}
 
 @app.callback(
     Output('graph-with-slider', 'figure'),
@@ -66,7 +79,7 @@ def update_graph(selected_season, selected_character):
         xaxis={"title": "Episode Number"}
     )
 
-    fig = go.Figure(data=traces, layout=layout)  
+    fig = go.Figure(data=traces, layout=layout)
     return fig
 
 # layout = dbc.Row([column2])
