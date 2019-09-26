@@ -12,7 +12,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-df = pd.read_csv(r'C:\Users\Eric\startrek-dash-app\assets\df')
+df = pd.read_csv('assets/df')
 
 character_names = df['Character'].unique()
 

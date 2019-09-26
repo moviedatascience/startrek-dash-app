@@ -7,7 +7,7 @@ import pandas as pd
 from app import app
 import plotly.graph_objs as go
 
-df = pd.read_csv(r'C:\Users\Eric\startrek-dash-app\assets\df')
+df = pd.read_csv('assets/df')
 
 character_names = df['Character'].unique()
 
@@ -41,7 +41,7 @@ layout = html.Div([
 )
 
 def explore_new(dummy):
-    traces = go.Scatter(x=df['Line_Count'], y=df['Rating'], trendline='ols', color='Character'),
+    traces = go.Scatter(x=df['Line_Count'], y=df['Rating']),
     return {'data': traces}
 
 @app.callback(
