@@ -4,7 +4,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 from joblib import load
-pipeline = load('assets/pipeline4.joblib')
+pipeline = load('assets/linear.joblib')
 
 from app import app
 
@@ -70,7 +70,7 @@ def predict(Character, Line_Count):
         columns=['Character', 'Line_Count'],
         data=[['Character', Line_Count]]
     )
-    y_pred = float(pipeline4.predict(df))
+    y_pred = float(pipeline.predict(df))
     return f'Projected Rating: {y_pred:.0f} '
 
 layout = dbc.Row([column1, column2])

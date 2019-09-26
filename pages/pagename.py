@@ -4,9 +4,10 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 from joblib import load
-pipeline = load('assets/pipeline4.joblib')
-
+import pandas as pd
 from app import app
+
+pipeline = load('assets/linear.joblib')
 
 column1 = dbc.Col(
     [
