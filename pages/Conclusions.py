@@ -85,7 +85,7 @@ column1 = dbc.Col(
 column2 = dbc.Col([
     dcc.Link(
     html.Img(
-        src="assets/sitepic.jpg",
+        src="assets/sitepic.png",
         style={'width': '100%', 'height': '100%'}
             ), href='http://www.chakoteya.net/StarTrek/index.html',)
     ]

@@ -20,7 +20,7 @@ layout = html.Div([
          Ultimately the use case for this model is as a general guide for qualitative decision making. This should not be used as a means to determine exactly how many lines a character
          should be limited to in order to achieve a high IMDb score.
 
-         However, we can still increase accuracy with the data we already have. 
+         However, we can still increase accuracy with the data we already have.
         """
         ),
         dcc.Markdown(
@@ -49,17 +49,17 @@ layout = html.Div([
         html.Div([
             html.H4("Picard VS O'Brien: "),
             html.Img(
-                src="assets/op.jpg",
+                src="assets/op.png",
                 style={'width': '100%', 'height': '100%', 'display': 'flex', 'marginBottom': 10}
                 ),
             html.H4("Picard VS Crusher: "),
             html.Img(
-                src="assets/crusher_picard.jpg",
+                src="assets/crusher_picard.png",
                 style={'width': '100%', 'height': '100%', 'display': 'flex', 'marginBottom': 10}
                 ),
             html.H4("Crusher vs Data: "),
             html.Img(
-                src="assets/data_crusher.jpg",
+                src="assets/data_crusher.png",
                 style={'width': '100%', 'height': '100%', 'display': 'flex', 'marginBottom': 10}
                 ),
             dcc.Markdown(

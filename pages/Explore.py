@@ -37,7 +37,7 @@ layout = html.Div([
     html.Div([
     html.Div([html.H2("KMeans Clustered Line Counts With OLS Line For Each Character:")], style={'textAlign': "center", 'marginTop': '5%'}),
         html.Img(
-                src="assets/trendline.jpg",
+                src="assets/trendline.png",
                 style={'width': '100%', 'height': '50%', 'marginTop': 50, 'display': 'flex', 'marginBottom': 10}
                 ),
         dcc.Markdown(
