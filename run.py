@@ -4,11 +4,10 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from pages import index, predictions, insights, process, pagename
+from pages import index, Explore, Predict, Analyze, Conclusions
 
 # Imports from this application
 from app import app, server
-from pages import index, predictions, insights, process
 
 """
 https://dash-bootstrap-components.opensource.faculty.ai/l/components/navbar
@@ -30,10 +29,10 @@ navbar = dbc.NavbarSimple(
     brand='StarTrek Ratings Predictor',
     brand_href='/',
     children=[
-        dbc.NavItem(dcc.Link('Predictions', href='/predictions', className='nav-link')),
-        dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')),
-        dbc.NavItem(dcc.Link('Process', href='/process', className='nav-link')),
-        dbc.NavItem(dcc.Link('pagename', href='/pagename', className='nav-link')),
+        dbc.NavItem(dcc.Link('Explore', href='/Explore', className='nav-link')),
+        dbc.NavItem(dcc.Link('Predict', href='/Predict', className='nav-link')),
+        dbc.NavItem(dcc.Link('Analyze', href='/Analyze', className='nav-link')),
+        dbc.NavItem(dcc.Link('Conclusions', href='/Conclusions', className='nav-link')),
     ],
     sticky='top',
     color='light',
@@ -47,10 +46,10 @@ footer = dbc.Container(
             html.P(
                 [
                     html.Span('Eric Smith', className='mr-2'),
-                    html.A(html.I(className='fas fa-envelope-square mr-1'), href='mailto:<you>@<provider>.com'),
-                    html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/<you>/<repo>'),
-                    html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/<you>/'),
-                    html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/<you>'),
+                    html.A(html.I(className='fas fa-envelope-square mr-1'), href='mailto:smith.eric.david@protonmail.com'),
+                    html.A(html.I(className='fab fa-github-square mr-1'), href='https://github.com/moviedatascience'),
+                    html.A(html.I(className='fab fa-linkedin mr-1'), href='https://www.linkedin.com/in/ericdavidsmith91/'),
+                    html.A(html.I(className='fab fa-twitter-square mr-1'), href='https://twitter.com/ericdavidsmith'),
                 ],
                 className='lead'
             )
@@ -75,16 +74,16 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/':
         return index.layout
-    elif pathname == '/predictions':
-        return predictions.layout
-    elif pathname == '/insights':
-        return insights.layout
-    elif pathname == '/process':
-        return process.layout
-    elif pathname == '/pagename':
-        return pagename.layout
-    elif pathname == '/overview':
-        return overview.layout
+    elif pathname == '/Explore':
+        return Explore.layout
+    elif pathname == '/Predict':
+        return Predict.layout
+    elif pathname == '/Analyze':
+        return Analyze.layout
+    elif pathname == '/Conclusions':
+        return Conclusions.layout
+    elif pathname == '/Home':
+        return index.layout
     else:
         return dcc.Markdown('## Page not found')
 

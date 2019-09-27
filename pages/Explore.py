@@ -8,41 +8,70 @@ from app import app
 import plotly.graph_objs as go
 
 df = pd.read_csv('assets/df')
+acc = pd.read_csv('assets/acc')
 
 character_names = df['Character'].unique()
 
 layout = html.Div([
-    html.Div([html.H1("Character Line Counts and Average Ratings Per Episode")], style={'textAlign': "center"}),
+    html.Div([html.H1("Character Line Counts and Average Ratings Per Episode")], style={'textAlign': "center", 'marginTop': '5%'}),
+    html.Div([
     html.Div([
         dcc.Dropdown(
             id='character-names-option',
             options=[{'label' : i, 'value' : i} for i in character_names],
-            value='PICARD'
+            value='PICARD',
+            style={'align': 'center', 'textAlign': "center", 'width' : '50%', 'marginTop': 10, 'marginBottom': 10, 'marginLeft' : '25%'}
             ),
+            ]),
         dcc.Graph(id='graph-with-slider'),
+        html.Div([html.H4("Season #: ")], style={'textAlign': "center", 'marginTop': 10}),
         dcc.Slider(
             id='seasons--slider',
             min=df['Seasons'].min(),
             max=df['Seasons'].max(),
             value=df['Seasons'].min(),
-            marks={str(season): str(season) for season in df['Seasons'].unique()},
+            marks={str(season): str(season) for season in df['Seasons'].unique()},),
+
+            ]),
+
+    html.Div([
+    html.Div([html.H2("KMeans Clustered Line Counts With OLS Line For Each Character:")], style={'textAlign': "center", 'marginTop': '5%'}),
+        html.Img(
+                src="assets/trendline.jpg",
+                style={'width': '100%', 'height': '50%', 'marginTop': 50, 'display': 'flex', 'marginBottom': 10}
+                ),
+        dcc.Markdown(
+        """
+        ***
+        ### Key Takeaways:
+        * The more Pulaski speaks, the more likely the IMDb rating will decline
+        * The more Jellico and Ogawa speak, the more likely the IMDb rating will increase
+        * Picard can seemingly talk as much as he wants and it won't affect the ratings
+        """
         ),
-        #text that I want
+            ]),
+    html.Div([
+        dcc.Link(
+        dbc.Button('Back Home', color='primary'),
+        href='/',
+        # style={'marginRight' : '75%', 'marginTop': 5}
+        ),
+        dcc.Link(
+        dbc.Button('Continue to Predict', color='primary'),
+        href='/Predict',
+        style={'marginLeft' : '75%'}
+        )
+        ]),
 
-        dcc.Graph(id='new'),
-        dcc.Input(id='dummy', value='dummy')
-    ],
-    style={'width': '100%', 'display': 'inline-block'})
-])
+    # html.Div([
+    #     dcc.Link(
+    #     dbc.Button('Predict', color='primary'),
+    #     href='/Predict',
+    #     style={'marginLeft' : '75%', 'marginTop': 5})
+    #     ]),
 
-@app.callback(
-    Output('new', 'figure'),
-    [Input('dummy', 'value')]
-)
+]),
 
-def explore_new(dummy):
-    traces = go.Scatter(x=df['Line_Count'], y=df['Rating']),
-    return {'data': traces}
 
 @app.callback(
     Output('graph-with-slider', 'figure'),
@@ -70,7 +99,7 @@ def update_graph(selected_season, selected_character):
     )
     traces = [bar_values, line_values]
     layout = go.Layout(
-        title="Ratings for Each Episode and How Much The Selected Character Spoke",
+        # title="Ratings for Each Episode and How Much The Selected Character Spoke",
         margin={"l": 100, "r": 100},
         colorway=["#287D95", "#EF533B"],
         yaxis={'title': f'Lines Per Episode', "range": [0, 200]},

@@ -29,19 +29,37 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
 
-            ## Value Proposition
+            ## DATA Driven Storytelling
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
+            The writers room for Star Trek: The Next Generation has a problem.
 
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
+            They've been renewed for an eighth season, but it's been so long since
+            they last wrote a script they don't know where to start. 🛸
 
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
+             The producer has come to you with a simple request:
+
+            ```"Let me know if there's any correlation between how much a character spoke and the audience reception of the episode." ```
+
+            In order to give an informed response we need to:
+
+            * Explore the data
+            * Create a model and
+            * Test the model accuracy
+
+            ***
+
+            View the video to understand the general line distribution for all characters
+            over the course of the series, then click the Explore Data button when you are ready to begin.
 
             """
         ),
-        dcc.Link(dbc.Button('Call To Action', color='primary'), href='/predictions')
+        dcc.Link(
+        dbc.Button('Explore Data', color='primary'),
+        href='/Explore',
+        style={'marginLeft' : '25%'}
+        )
     ],
-    md=4,
+    md=5,
 )
 
 # gapminder = px.data.gapminder()
@@ -51,7 +69,7 @@ column1 = dbc.Col(
 column2 = dbc.Col([
     html.Iframe(
         src="https://www.youtube.com/embed/RLz025d_vJ0",
-        style={'width': '100%', 'height': '100%', 'display': 'inline-block'}
+        style={'width': '100%', 'height': '80%'}
     )
     ]
 
